@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-app",
+  "version": "1.0.0",
+  "description": "Full-stack e-commerce application",
+  "scripts": {
+    "install": "npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "keywords": [],
+  "author": "Amjad Manzoor",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
