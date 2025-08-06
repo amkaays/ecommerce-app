@@ -14,6 +14,34 @@ const initializeCart = (req, res, next) => {
 
 router.use(initializeCart);
 
+/**
+ * @swagger
+ * tags:
+ *   name: Cart
+ *   description: Shopping cart management (session-based)
+ */
+
+/**
+ * @swagger
+ * /api/cart/add:
+ *   post:
+ *     summary: Add a product to the cart
+ *     tags: [Cart]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               productId:
+ *                 type: integer
+ *               quantity:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Cart updated successfully.
+ */
 // Get cart
 router.get('/', (req, res) => {
   res.status(200).json(req.session.cart);
@@ -77,6 +105,23 @@ router.put('/update/:productId', (req, res) => {
   });
 });
 
+/**
+ * @swagger
+ * /api/cart/remove/{productId}:
+ *   delete:
+ *     summary: Remove an item from the cart
+ *     tags: [Cart]
+ *     parameters:
+ *       - in: path
+ *         name: productId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the product to remove
+ *     responses:
+ *       200:
+ *         description: Item removed and cart updated.
+ */
 // Remove item from cart
 router.delete('/remove/:productId', (req, res) => {
   const { productId } = req.params;

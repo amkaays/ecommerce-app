@@ -5,7 +5,43 @@ import User from '../models/User.js';
 
 const router = express.Router();
 
-// Register a new user
+/**
+ * @swagger
+ * tags:
+ *   name: Authentication
+ *   description: User registration and login
+ */
+
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: User registered successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: User already exists.
+ */
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
   try {
@@ -24,6 +60,36 @@ const newUser = await User.create({ email, password });
   }
 });
 
+/**
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Log in an existing user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Login successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       401:
+ *         description: Unauthorized (incorrect email or password).
+ */
 // Login with email/password
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
