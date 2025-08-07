@@ -173,7 +173,7 @@ function RegisterPage() {
           onClick={handleGoogleLogin} 
           className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600"
         >
-          Login with Google
+          Continue with Google
         </button>
         <p className="text-center mt-4">
           Already have an account? <Link to="/login" className="text-blue-500 hover:underline">Login here</Link>

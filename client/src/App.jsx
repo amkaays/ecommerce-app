@@ -1,4 +1,3 @@
-// File: client/src/App.jsx
 import React, { useState, useEffect, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
@@ -14,7 +13,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 // Create a context to share user and cart state
 export const AppContext = createContext();
 
-// Configure axios for credentials
+// Configure axios defaults
 axios.defaults.baseURL = 'http://localhost:3000';
 axios.defaults.withCredentials = true;
 
@@ -52,7 +51,33 @@ function App() {
   return (
     <AppContext.Provider value={{ user, setUser, cart, setCart, fetchUserAndCart }}>
       <div className="bg-gray-100 min-h-screen">
-        <Toaster position="top-center" reverseOrder={false} />
+        <Toaster 
+          position="top-center"
+          reverseOrder={false}
+          toastOptions={{
+            success: {
+              duration: 2000,
+              style: {
+                background: 'green',
+                color: 'white',
+              },
+            },
+            error: {
+              duration: 2000,
+              style: {
+                background: 'red',
+                color: 'white',
+              },
+            },
+            loading: {
+              duration: 1000,
+              style: {
+                background: 'blue',
+                color: 'white',
+              },
+            },
+          }}
+        />
         <Navbar />
         <main className="container mx-auto p-4">
           <Routes>

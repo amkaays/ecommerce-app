@@ -47,7 +47,7 @@ export default function (passport) {
         try {
             const user = await User.findOne({ where: { email: email.toLowerCase() } });
             if (!user) {
-                return done(null, false, { message: 'That email is not registered.' });
+                return done(null, false, { message: 'Invalid email or password.' });
             }
             if (!user.password) { // User registered with Google
                 return done(null, false, { message: 'You have previously signed up with Google. Please use Google to log in.' });
@@ -57,7 +57,7 @@ export default function (passport) {
             if (isMatch) {
                 return done(null, user);
             } else {
-                return done(null, false, { message: 'Password incorrect.' });
+                return done(null, false, { message: 'Invalid email or password.' });
             }
         } catch (err) {
             return done(err);
