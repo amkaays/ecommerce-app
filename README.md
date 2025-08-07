@@ -65,6 +65,17 @@ See [.env.example](.env.example) for the required variable
    - Frontend: http://localhost:5173
    - Backend: http://localhost:3000
 
+## API Documentation (Swagger)
+
+This project uses [Swagger](https://swagger.io/) for interactive API documentation.
+
+- After starting the backend server, visit:  
+  **http://localhost:3000/api-docs**  
+  to view and interact with the API endpoints.
+
+You can use the Swagger UI to explore available routes, see request/response formats, and test API calls directly from your browser.
+
+
 ## Usage
 
 - Visit the frontend URL to browse products, register/login, and manage your cart.
